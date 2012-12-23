@@ -1,0 +1,157 @@
+/* Will be compiled down to a single stylesheet with your sass files */
+html
+{
+	background: url(../images/bg.png);
+}
+
+/* + header */
+.page-header
+{
+	background: transparent url(../images/bg_beigepaper.png) center -147px repeat-x;	
+}
+.page-header > div
+{
+	width: 1024px;
+}
+.page-header h1
+{
+	margin: 0 auto;
+	display: inline-block;
+	padding: 0 4px 14px 3px;
+	background: transparent url(../images/shadow_logo.png) left bottom no-repeat;
+}
+.logo-bannici
+{
+	display: block;
+	width: 148px;
+	height: 150px;
+	background: transparent url(../images/bg_logo.png) left top no-repeat;
+	line-height: 0;
+}
+
+/* - nav */
+.page-nav ul
+{
+	display: inline-block;
+	color: #939393;
+}
+.page-nav ul li
+{
+	list-style-type: disc;
+	list-style-position: inside;
+	margin-left: 10px;
+}
+.page-nav ul li:first-child
+{
+	list-style: none;
+}
+
+/* - mailto */
+.page-contact-mail a
+{
+	color: #44a3d2;
+}
+
+/* + footer */
+.page-footer > .page-bottomline
+{
+	height: 8px;
+	background: transparent url(../images/bg_beigepaper.png) center bottom repeat-x;
+}
+.page-footer > div
+{
+	width: 1024px;
+	background: rgba(0, 0, 0, .3);
+}
+.page-footer-intro
+{
+	padding: 45px 50px;
+}
+
+/* - contact */
+.contact > .contact-mail
+{
+	padding-left: 48px;
+	background: transparent url(../images/icon_mail.png) left center no-repeat;
+}
+.contact > .contact-mail a
+{
+	color: #114f6e;
+}
+.contact > .contact-mail a strong
+{
+	color: #44a3d2;
+}
+.contact > .contact-detail
+{
+	color: #878787;
+}
+
+/* - about us */
+.aboutus
+{
+	width: 35%;
+	color: #878787;
+}
+
+/* - Friend links */
+.friendlinks
+{
+	background: transparent url(../images/bg_beigepaper.png) center bottom repeat-x;
+}
+.friendlinks > div
+{
+	height: 115px;
+	background: transparent url(../images/friendlinks.png) center bottom no-repeat;
+}
+
+/* + Content */
+.page-content section
+{
+	margin-top: 30px;
+}
+.page-content section > h1
+{
+	color: #6c6c6c;
+	margin-left: 50px;
+}
+/* - big image */
+.page-content section > div
+{
+	height: 188px;
+	margin-top: 10px;
+}
+.painting > div
+{
+	background: transparent url(../images/1.jpg) center top no-repeat;
+}
+.print > div
+{
+	background: transparent url(../images/2.jpg) center top no-repeat;
+}
+.photo > div
+{
+	background: transparent url(../images/3.jpg) center top no-repeat;
+}
+.interactive > div
+{
+	background: transparent url(../images/4.jpg) center top no-repeat;
+}
+.brand > div
+{
+	background: transparent url(../images/5.jpg) center top no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
