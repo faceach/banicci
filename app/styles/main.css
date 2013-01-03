@@ -118,26 +118,44 @@ html
 /* - big image */
 .page-content section > div
 {
-	height: 188px;
 	margin-top: 10px;
+	width: 100%;
+	height: 188px;
+	position: relative;
+	overflow: hidden;
 }
-.painting > div
+.page-content section div.mover
+{
+	height: 188px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.page-content section ul
+{
+	height: 188px;
+	width: 3215px;
+	float: left;
+}
+.painting div.mover ul
 {
 	background: transparent url(../images/1.jpg) center top no-repeat;
 }
-.print > div
+.print div.mover ul
 {
 	background: transparent url(../images/2.jpg) center top no-repeat;
 }
-.photo > div
+.photo div.mover ul
 {
 	background: transparent url(../images/3.jpg) center top no-repeat;
 }
-.interactive > div
+.interactive div.mover ul
 {
 	background: transparent url(../images/4.jpg) center top no-repeat;
 }
-.brand > div
+.brand div.mover ul
 {
 	background: transparent url(../images/5.jpg) center top no-repeat;
 }
