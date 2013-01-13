@@ -1,0 +1,10 @@
+.page-nav ul li
+{
+	float: none;
+	text-align: left;
+}
+.page-nav ul li:first-child
+{
+	list-style-type: disc;
+	list-style-position: inside;
+}

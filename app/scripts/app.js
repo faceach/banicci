@@ -1,10 +1,17 @@
 define(['jquery'
-	, './widget/rotate/main'
-	], function($, rotate) {
+	, './widget/uninterruptedscroll/main'
+	, './widget/showdetail/main'
+	], function($, UninterruptedScroll, ShowDetail) {
+    'use strict';
 
-	$('.page-content section').each(function(e){
-		var r = new rotate;
-		r.init($(this));
-	});
-  return 'Hello from Yeoman!';
+	return {
+		'init': function(){
+			$('.mover').each(function(e){
+				(new UninterruptedScroll).init($(this));
+			});
+			// Light Box
+			ShowDetail.init();
+		}
+	};
+
 });

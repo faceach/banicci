@@ -6,6 +6,8 @@ var app = express.createServer();
 
 app.configure(function () {
 
+    app.use(stylus.middleware({ src: __dirname + '/', compile: compile }));
+    app.use(express.static(__dirname + '/'));
     app.set('views', __dirname);
     app.set('view engine', 'jade');
 
@@ -20,8 +22,8 @@ app.configure(function () {
 
     function compile(str, path) {
         return stylus(str)
-            .set('filename', path)
-            .use(nib());
+                .set('filename', path)
+                .use(nib());
     };
 
 });
@@ -82,7 +84,7 @@ app.use(function (err, req, res, next) {
 
 // Routes
 app.get('/', function (req, res) {
-    res.render('/');
+    res.render('./');
 });
 app.get('/index', function (req, res) {
     res.render('index.html');

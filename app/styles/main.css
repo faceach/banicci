@@ -2,6 +2,35 @@
 html
 {
 	background: url(../images/bg.png);
+	font: 75%/1.5 arial, sans-serif;
+}
+a
+{
+	text-decoration: none;
+}
+
+/* + Mover for Uninterruptedscroll */
+.mover
+{
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.mover > ul
+{
+	word-break: keep-all;
+	white-space: nowrap;
+	letter-spacing: -4px;
+}
+.mover > ul > li
+{
+	line-height: 0;
+	display: inline-block;
+}
+/* + Fancybox */
+.fancybox
+{
+	display: block;
+	cursor: pointer;
 }
 
 /* + header */
@@ -11,7 +40,6 @@ html
 }
 .page-header > div
 {
-	width: 1024px;
 }
 .page-header h1
 {
@@ -28,28 +56,38 @@ html
 	background: transparent url(../images/bg_logo.png) left top no-repeat;
 	line-height: 0;
 }
-
-/* - nav */
-.page-nav ul
-{
-	display: inline-block;
-	color: #939393;
-}
-.page-nav ul li
-{
-	list-style-type: disc;
-	list-style-position: inside;
-	margin-left: 10px;
-}
-.page-nav ul li:first-child
-{
-	list-style: none;
-}
-
-/* - mailto */
-.page-contact-mail a
-{
-	color: #44a3d2;
+	/* - nav */
+	.page-nav ul
+	{
+		display: inline-block;
+		color: #939393;
+	}
+	.page-nav ul li
+	{
+		list-style-type: disc;
+		list-style-position: inside;
+		margin-left: 10px;
+	}
+	.page-nav ul li:first-child
+	{
+		list-style: none;
+	}
+	/* - mailto */
+	.page-contact-mail a
+	{
+		color: #44a3d2;
+	}
+@media screen and (max-width: 480px) {
+	.page-nav ul li
+	{
+		float: none;
+		text-align: left;
+	}
+	.page-nav ul li:first-child
+	{
+		list-style-type: disc;
+		list-style-position: inside;
+	}
 }
 
 /* + footer */
@@ -60,49 +98,66 @@ html
 }
 .page-footer > div
 {
-	width: 1024px;
 	background: rgba(0, 0, 0, .3);
+	width: 1024px;
 }
 .page-footer-intro
 {
 	padding: 45px 50px;
 }
-
-/* - contact */
-.contact > .contact-mail
-{
-	padding-left: 48px;
-	background: transparent url(../images/icon_mail.png) left center no-repeat;
+	/* - contact */
+	.contact > .contact-mail
+	{
+		padding-left: 48px;
+		background: transparent url(../images/icon_mail.png) left center no-repeat;
+	}
+	.contact > .contact-mail a
+	{
+		color: #114f6e;
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+	.contact > .contact-mail a strong
+	{
+		color: #44a3d2;
+	}
+	.contact > .contact-detail
+	{
+		color: #878787;
+	}
+	/* - about us */
+	.aboutus
+	{
+		width: 35%;
+		color: #878787;
+	}
+	/* - Friend links */
+	.friendlinks
+	{
+		width: 100%;
+		height: 115px;
+		background: transparent url(../images/bg_beigepaper.png) center bottom repeat-x;
+	}
+@media screen and (max-width: 1024px) {
+	.page-footer > div
+	{
+		width: 100%;
+	}
 }
-.contact > .contact-mail a
-{
-	color: #114f6e;
-}
-.contact > .contact-mail a strong
-{
-	color: #44a3d2;
-}
-.contact > .contact-detail
-{
-	color: #878787;
-}
-
-/* - about us */
-.aboutus
-{
-	width: 35%;
-	color: #878787;
-}
-
-/* - Friend links */
-.friendlinks
-{
-	background: transparent url(../images/bg_beigepaper.png) center bottom repeat-x;
-}
-.friendlinks > div
-{
-	height: 115px;
-	background: transparent url(../images/friendlinks.png) center bottom no-repeat;
+@media screen and (max-width: 480px) {
+	.page-footer > div
+	{
+		width: 100%;
+	}
+	.page-footer-intro
+	{
+		padding: 45px 15px;
+	}
+	.page-footer-intro section
+	{
+		float: none;
+		width: 100%;
+	}
 }
 
 /* + Content */
@@ -115,50 +170,20 @@ html
 	color: #6c6c6c;
 	margin-left: 50px;
 }
+@media screen and (max-width: 480px) {
+	.page-content section > h1
+	{
+		margin-left: 15px;
+	}
+}
 /* - big image */
 .page-content section > div
 {
 	margin-top: 10px;
 	width: 100%;
 	height: 188px;
-	position: relative;
-	overflow: hidden;
 }
-.page-content section div.mover
-{
-	height: 188px;
-	position: absolute;
-	left: 0;
-	top: 0;
-	white-space: nowrap;
-	overflow: hidden;
-}
-.page-content section ul
-{
-	height: 188px;
-	width: 3215px;
-	float: left;
-}
-.painting div.mover ul
-{
-	background: transparent url(../images/1.jpg) center top no-repeat;
-}
-.print div.mover ul
-{
-	background: transparent url(../images/2.jpg) center top no-repeat;
-}
-.photo div.mover ul
-{
-	background: transparent url(../images/3.jpg) center top no-repeat;
-}
-.interactive div.mover ul
-{
-	background: transparent url(../images/4.jpg) center top no-repeat;
-}
-.brand div.mover ul
-{
-	background: transparent url(../images/5.jpg) center top no-repeat;
-}
+
 
 
 
