@@ -1,35 +1,29 @@
-define([
-'jquery'
-	],function($){
-	
+define(['jquery'],function($){
+	'use strict';
 
+	var Widget = function($mover){
+		if(!$mover || $mover.length <=0){
+			return;
+		}
+		this.$mover = $mover;		
+	};
+	Widget.prototype ={
+		init: function () {
+			var me = this;
+			var $me = me.$mover;
+			var $ul = $me.find("> ul");
 
+			var mouseActive = false;
+			var startMouseLeft = 0;
+			var ulLeft = 0
+			
+			// Reset overflow value
+			$me.css("overflow", "hidden");
+			// Move 1px left to enable right-side-scroll
+			$ul.css("left", -1);
 
-	var o = function(){};
-	o.prototype ={
-
-		init: function ($section) {
-			if(!$section || $section.length <=0){
-				return;
-			}
-			this.$section = $section;
-			this.$mover = $section.find('.mover');
-			this.$part = this.$mover.find('ul');
-			this.$partClone = this.$part.clone();
-			this.moverWidth = this.$mover.width();
-			this.partWidth = this.$part.width();
-			this.moverLeft = this.$mover.position().left;
-			this.sectionWidth = $section.width();
-			this.ev();
-		},
-
-		ev: function () {
-
-			var me = this,
-				mouseActive = false,
-				startMouseLeft = 0;
-
-			me.$section.on('mousedown', 'ul', function(e){
+			$me
+			.on('mousedown', 'ul', function(e){
 				e.preventDefault();
 				mouseActive = true;
 				startMouseLeft = e.offsetX;
@@ -37,65 +31,43 @@ define([
 			.on('mouseup', 'ul', function (e) {
 				e.preventDefault();
 				mouseActive = false;
-
-				// Reset
-				me.moverLeft = me.$mover.position().left;
-
 			})
 			.on('mousemove', 'ul', function (e) {
 				e.preventDefault();
 				if(mouseActive) {
 					var offsetX = e.offsetX-startMouseLeft;
 					// Postion
-					var newLeft = me.moverLeft + offsetX;
-
-					if (offsetX<=0) {
-						// Remove pass slide
-						if (Math.abs(newLeft) >= me.partWidth) {
-							me.$mover.find('ul:first-child').remove();
-							newLeft += me.partWidth;
-							me.moverWidth -= me.partWidth;
-							me.$mover.width(me.moverWidth);
-						}
-
-						//
-						if ((me.moverWidth + newLeft) <= me.sectionWidth) {
-							me.moverWidth += me.partWidth;
-							me.$mover.width(me.moverWidth);
-							me.$mover.append(me.$partClone);
-						}
+					var scrollLeft = ulLeft + offsetX;
+					var $firstLi = $ul.find("li:first");
+					var $lastLi = $ul.find("li:last");
+					var firstLiWidth = $firstLi.width();
+					var lastLiWidth = $lastLi.width();
+					var dis = scrollLeft - firstLiWidth;
+					// Keep scroll uninterrupted
+					if(dis > 0) {
+						$ul.append($firstLi);
+						ulLeft = dis;
+					}
+					else if(scrollLeft <= 0) {
+						$ul.prepend($lastLi);
+						ulLeft = scrollLeft + lastLiWidth;
 					}
 					else {
-						if((me.moverWidth+newLeft) - me.sectionWidth >= me.partWidth){
-							console.log("moverWidth:"+me.moverWidth);
-							console.log("newLeft:"+newLeft);
-							console.log("sectionWidth:"+me.sectionWidth);
-							console.log("partWidth:"+me.partWidth);
-							me.$mover.find('ul:last-child').remove();
-							me.moverWidth -= me.partWidth;
-							me.$mover.width(me.moverWidth);
-						}
-
-						if(newLeft>0){
-							me.moverWidth += me.partWidth;
-							me.$mover.width(me.moverWidth);
-							me.$mover.prepend(me.$partClone);
-							newLeft -= me.partWidth;
-						}
+						ulLeft = scrollLeft;
 					}
-					me.$mover.css('left', newLeft);
-
-					// Reset
-					me.moverLeft = newLeft;
-
+					$ul.css("left", ulLeft);
 				}
 			});
-
 		}
-
 
 	};
 
-	return o;
+	return function(args){
+		var w = new Widget(args);
+		if(!w){
+			return;
+		}
+		w.init();
+	};
 
 });

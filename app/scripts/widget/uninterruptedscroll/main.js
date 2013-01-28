@@ -1,19 +1,14 @@
-define([
-'jquery'
-	], function($){
+define(['jquery'], function($){
     'use strict';
 	
-	var o = function(){};
-	o.prototype ={
-		init: function ($mover) {
-			if(!$mover || $mover.length <=0){
-				return;
-			}
-			this.$mover = $mover;
-
-			this.ev();
-		},
-		ev: function () {
+	var Widget = function($mover){
+		if(!$mover || $mover.length <=0){
+			return;
+		}
+		this.$mover = $mover;
+	};
+	Widget.prototype ={
+		init: function () {
 			var me = this;
 			var $me = me.$mover;
 			var $ul = $me.find("> ul");
@@ -42,11 +37,18 @@ define([
 				if(scrollLeft <= 0) {
 					$ul.prepend($lastLi);
 					$me.scrollLeft(scrollLeft + lastLiWidth);
+					return;
 				}
 			});
 		}
 	};
 
-	return o;
+	return function(args){
+		var w = new Widget(args);
+		if(!w){
+			return;
+		}
+		w.init();
+	};
 
 });

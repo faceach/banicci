@@ -1,13 +1,13 @@
 define(['jquery'
-	, './widget/uninterruptedscroll/main'
+	, './widget/uninterruptedscroll/drag'
 	, './widget/showdetail/main'
-	], function($, UninterruptedScroll, ShowDetail) {
+	], function($, uninterruptedScroll, ShowDetail) {
     'use strict';
 
 	return {
 		'init': function(){
 			$('.mover').each(function(e){
-				(new UninterruptedScroll).init($(this));
+				uninterruptedScroll($(this));
 			});
 			// Light Box
 			ShowDetail.init();
