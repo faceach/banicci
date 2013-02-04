@@ -17,9 +17,6 @@ define(['jquery', 'jquery-ui'],function($){
 			var ulLeft = 0;
 			var marginLeft = 0;
 			
-			// Reset overflow value
-			$me.css("overflow", "hidden");
-
 			$ul.draggable({ axis: "x",
 				start: function(e){
 					startX = e.pageX;

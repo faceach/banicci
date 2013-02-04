@@ -12,7 +12,7 @@ a
 /* + Mover for Uninterruptedscroll */
 .mover
 {
-	overflow-x: auto;
+	overflow-x: hidden;
 	overflow-y: hidden;
 }
 .mover > ul

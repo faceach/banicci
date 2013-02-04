@@ -16,6 +16,8 @@ define(['jquery'], function($){
 			if($ul.width() < $me.width()){
 				return;
 			}
+			// Reset overflow value
+			$me.css("overflowX", "auto");
 			// Move 1px left to enable right-side-scroll
 			$me.scrollLeft(1);
 			// Add first child to right-side, so will keep the left-scroll condition
