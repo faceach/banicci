@@ -29,7 +29,6 @@
 
 # OS generated files #
 ######################
-dist/
 temp/
 node_modules/
 .project
