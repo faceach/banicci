@@ -19,13 +19,13 @@ define(['jquery'
 		    iPad: u.indexOf('iPad') > -1,
 		    webApp: u.indexOf('Safari') == -1
 		};
-		return ua.ios;
+		return ua;
     };
 
 	return {
 		'init': function(){
 			$('.mover').each(function(e){
-				if (getUA()) {
+				if (getUA().ios) {
 					uninterruptedScroll($(this));
 				}
 				else {

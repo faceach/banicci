@@ -1,5 +1,7 @@
 module.exports = function( grunt ) {
   'use strict';
+
+  var EMPTY = "empty:";
   //
   // Grunt configuration:
   //
@@ -157,33 +159,81 @@ module.exports = function( grunt ) {
       dist: '<config:rev.img>'
     },
 
-    // rjs configuration. You don't necessarily need to specify the typical
-    // `path` configuration, the rjs task will parse these values from your
-    // main module, using http://requirejs.org/docs/optimization.html#mainConfigFile
-    //
-    // name / out / mainConfig file should be used. You can let it blank if
-    // you're using usemin-handler to parse rjs config from markup (default
-    // setup)
-    rjs: {
-      // no minification, is done by the min task
-      optimize: 'none',
-      baseUrl: './scripts',
-      wrap: true,
-      name: 'main'
+    pkg: '<json:package.json>',
+    meta: {
+      banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %>\n' + '<%= pkg.homepage ? "* " + pkg.homepage + "\n" : "" %>' + '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' + ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
-
-    // While Yeoman handles concat/min when using
-    // usemin blocks, you can still use them manually
-    concat: {
-      dist: ''
+    clean: {
+      build: ["dist/"]
     },
-
-    min: {
-      dist: ''
+    copy: {
+      dist:{
+        files: {
+          "dist/images/": "app/images/**/*",
+          "dist/scripts/vendor/": [
+            "app/scripts/vendor/require.js",
+            "app/scripts/vendor/jquery-1.8.3.min.js",
+            "app/scripts/vendor/jquery-ui-1.10.0.custom.min.js",
+            "app/scripts/vendor/modernizr.min.js"
+          ],
+          "dist/scripts/fancybox/source/": [
+            "app/scripts/fancybox/source/jquery.fancybox.css",
+            "app/scripts/fancybox/source/jquery.fancybox.js"
+          ],
+          "dist/": "app/index.html"
+        }
+      }
+    },
+    mincss: {
+      compress: {
+        files: {
+          "dist/styles/main.min.css": [
+            "app/styles/reset.css",
+            "app/styles/base.css",
+            "app/styles/main.css"
+          ]
+        }
+      }
+    },
+    requirejs: {
+        "app": {
+            options: {
+                baseUrl: "./app",
+                include: ["scripts/app"],
+                exclude: [],
+                out: "dist/scripts/app.js",
+                paths: {
+                  "jquery": 'scripts/vendor/jquery-1.8.3.min',
+                  "jquery-ui": 'scripts/vendor/jquery-ui-1.10.0.custom.min',
+                  "fancybox": "scripts/fancybox/source/jquery.fancybox"
+                },
+                map: {}
+            }
+        },
+        "app-debug": {
+            options: {
+                baseUrl: "./app",
+                include: ["scripts/app"],
+                exclude: [],
+                out: "dist/scripts/app.debug.js",
+                paths: {
+                  "jquery": EMPTY,
+                  "jquery-ui": EMPTY,
+                  "fancybox": EMPTY
+                },
+                optimize: 'none',
+                map: {}
+            }
+        }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib');
+
+  // Default task.
+  grunt.registerTask('default', 'clean:build copy:dist mincss requirejs');
+
   // Alias the `test` task to run the `mocha` task instead
-  grunt.registerTask('test', 'server:phantom mocha');
+  //grunt.registerTask('test', 'server:phantom mocha');
 
 };

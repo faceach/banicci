@@ -1,7 +1,10 @@
 {
-  "author": "",
-  "name": "",
-  "version": "0.0.0",
-  "dependencies": {},
-  "devDependencies": {}
+   	"author": "",
+   	"name": "banicci",
+   	"version": "1.0.0",
+  	"dependencies": {
+		"grunt": "*",
+		"grunt-contrib": "*"
+	},
+   	"devDependencies": {}
 }
