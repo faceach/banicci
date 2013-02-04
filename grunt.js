@@ -195,43 +195,60 @@ module.exports = function( grunt ) {
         }
       }
     },
-    requirejs: {
-        "app": {
-            options: {
-                baseUrl: "./app",
-                include: ["scripts/app"],
-                exclude: [],
-                out: "dist/scripts/app.js",
-                paths: {
-                  "jquery": 'scripts/vendor/jquery-1.8.3.min',
-                  "jquery-ui": 'scripts/vendor/jquery-ui-1.10.0.custom.min',
-                  "fancybox": "scripts/fancybox/source/jquery.fancybox"
-                },
-                map: {}
-            }
+    imagemin: {
+      dist: {
+        "options": {
+          optimizationLevel: 3
         },
-        "app-debug": {
-            options: {
-                baseUrl: "./app",
-                include: ["scripts/app"],
-                exclude: [],
-                out: "dist/scripts/app.debug.js",
-                paths: {
-                  "jquery": EMPTY,
-                  "jquery-ui": EMPTY,
-                  "fancybox": EMPTY
-                },
-                optimize: 'none',
-                map: {}
-            }
+        files: {
+          'dist/images/': 'app/images/**/*'
         }
+      }
+    },
+    smushit:{
+      path: {
+          src: 'dist/images',
+      }
+    },
+    requirejs: {
+      "app": {
+          options: {
+            baseUrl: "./app",
+            include: ["scripts/app"],
+            exclude: [],
+            out: "dist/scripts/app.js",
+            paths: {
+              "jquery": EMPTY,
+              "jquery-ui": EMPTY,
+              "fancybox": EMPTY
+            },
+            map: {}
+          }
+      },
+      "app-debug": {
+          options: {
+            baseUrl: "./app",
+            include: ["scripts/app"],
+            exclude: [],
+            out: "dist/scripts/app.debug.js",
+            paths: {
+              "jquery": EMPTY,
+              "jquery-ui": EMPTY,
+              "fancybox": EMPTY
+            },
+            optimize: 'none',
+            map: {}
+          }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-smushit');
 
   // Default task.
-  grunt.registerTask('default', 'clean:build copy:dist mincss requirejs');
+  grunt.registerTask('default', 'clean:build copy:dist mincss requirejs smushit');
 
   // Alias the `test` task to run the `mocha` task instead
   //grunt.registerTask('test', 'server:phantom mocha');

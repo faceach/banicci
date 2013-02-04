@@ -1,10 +1,13 @@
 {
-   	"author": "",
-   	"name": "banicci",
-   	"version": "1.0.0",
-  	"dependencies": {
-		"grunt": "*",
-		"grunt-contrib": "*"
-	},
-   	"devDependencies": {}
+  "author": "",
+  "name": "banicci",
+  "version": "1.0.0",
+  "dependencies": {
+    "grunt": "*",
+    "grunt-contrib": "*",
+    "grunt-contrib-imagemin": "*"
+  },
+  "devDependencies": {
+    "grunt-contrib-imagemin": "~0.1.0"
+  }
 }
